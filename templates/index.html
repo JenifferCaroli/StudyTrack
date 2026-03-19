@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <!-- Define padrão de caracteres (acentos funcionando corretamente) -->
     <meta charset="UTF-8">
-
-    <!-- Título da aba do navegador -->
     <title>StudyTrack</title>
+    <!-- Link para o arquivo CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <!-- Cabecalho -->
+    <header>
+        <h1>StudyTrack</h1>
+    </header>
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <h2>Bem-vinda!</h2>
+        <p>Organize seus estudos de forma simples.</p>
 
-    <!-- Título principal da página -->
-    <h1>Bem-vinda ao StudyTrack 📚</h1>
-
-    <!-- Pequena descrição -->
-    <p>Seu sistema de organização de estudos</p>
-
+        <!-- Botão inicial -->
+        <button>Começar</button>
+    </div>
 </body>
 </html>
