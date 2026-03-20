@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matérias</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>📚 Cadastro de Matérias</h1>
+    </header>
+
+    <div class="container">
+        <!-- Formulário -->
+        <form method="POST" action="">
+            <!-- Campo de texto-->
+            <input type="text" name="nome" placeholder="Digite a matéria" required>
+
+            <!-- Botão-->
+            <button type="submit">Adicionar</button>
+
+        </form>
+        <hr>
+        <!-- Lista de matérias-->
+        <h2>Minhas matérias:</h2>
+        <ul>
+            {% for materia in materias %}
+            <li>{{ materias }} </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+
+</html>

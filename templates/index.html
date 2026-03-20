@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>StudyTrack</title>
     <!-- Link para o arquivo CSS -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
     <!-- Cabecalho -->
     <header>
@@ -17,7 +19,10 @@
         <p>Organize seus estudos de forma simples.</p>
 
         <!-- Botão inicial -->
-        <button>Começar</button>
+        <a href="/materias">
+            <button>Começar</button>
+        </a>
     </div>
 </body>
+
 </html>
