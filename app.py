@@ -60,5 +60,21 @@ def cadastro_materias():
     conn.close()
 
     return render_template("materias.html", materias=materias)
+
+# Rota para excluir matéria
+@app.route("/excluir/<int:id>")
+def excluir_materia(id):
+    
+    conn = conectar_db()
+    cursor = conn.cursor()
+
+    # Deletar pelo ID
+    cursor.execute("DELETE FROM materias WHERE id = ?", (id,))
+    conn.commit()
+
+    conn.close()
+
+    # Redirecionar de volta para a página de matérias
+    return redirect(url_for("cadastro_materias"))
 if __name__ == "__main__":                      
     app.run(debug=True)

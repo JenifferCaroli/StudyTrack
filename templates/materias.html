@@ -28,7 +28,12 @@
         <h2>Minhas matérias:</h2>
         <ul>
             {% for materia in materias %}
-                <li>{{ materia[1] }} </li>
+            <li>{{ materia[1] }}
+                <!-- Botão de excluir -->
+                <a href="/excluir/{{ materia[0] }}">
+                    <button>Excluir</button>
+                </a>
+            </li>
             {% endfor %}
         </ul>
     </div>
