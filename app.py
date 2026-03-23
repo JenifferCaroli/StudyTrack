@@ -76,5 +76,32 @@ def excluir_materia(id):
 
     # Redirecionar de volta para a página de matérias
     return redirect(url_for("cadastro_materias"))
+
+# Editar matérias
+@app.route("/editar/<int:id>", methods=["GET", "POST"])
+def editar_materias(id):
+
+    conn = conectar_db()
+    cursor = conn.cursor()
+
+    if request.method == "POST":
+        novo_nome = request.form.get("nome")
+
+        if novo_nome:
+            cursor.execute(
+                "UPDATE materias SET nome = ? WHERE id = ?",
+                (novo_nome, id)
+            )
+            conn.commit()
+            conn.close()
+
+            return redirect(url_for("cadastro_materias"))
+        # Busccar materias atual
+    cursor.execute("SELECT * FROM materias WHERE id = ?", (id,))
+    materia = cursor.fetchone()
+
+    conn.close()
+
+    return render_template("editar.html", materia=materia)
 if __name__ == "__main__":                      
     app.run(debug=True)

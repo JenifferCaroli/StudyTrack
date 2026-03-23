@@ -29,10 +29,18 @@
         <ul>
             {% for materia in materias %}
             <li>{{ materia[1] }}
+
+                <!-- Botão de editar -->
+                <a href="/editar/{{ materia[0] }}">
+                    <button>Editar</button>
+                </a>
+
                 <!-- Botão de excluir -->
                 <a href="/excluir/{{ materia[0] }}">
                     <button>Excluir</button>
                 </a>
+
+
             </li>
             {% endfor %}
         </ul>
