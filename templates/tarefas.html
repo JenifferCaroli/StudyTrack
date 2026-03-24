@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h2>📄Tarefas</h2>
+
+        <form action="" method="POST">
+            <input type="text" name="nome" placeholder="Nova tarefa" required>
+            <button type="submit">Adicionar</button>
+        </form>
+        <ul>
+            {% for tarefa in tarefas %}
+            <li>
+                {{ tarefa[1] }}
+            </li>
+            {% endfor %}
+        </ul>
+        <br>
+        <a href="{{ url_for('cadastro_materias') }}">Voltar para as matérias</a>
+
+    </div>
+</body>
+
+</html>

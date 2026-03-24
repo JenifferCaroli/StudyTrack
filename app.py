@@ -15,11 +15,22 @@ def conectar_db():
 def criar_tabela():
     conn = conectar_db()
     cursor = conn.cursor()
-
+# Tabela de matérias
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS materias (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT NOT NULL
+    )
+    """)
+
+# Tabela de tarefas
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS tarefas (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT NOT NULL,
+        status INTEGER DEFAULT 0,
+        materia_id INTEGER,
+        FOREIGN KEY (materia_id) REFERENCES materias(id)
     )
     """)
 
@@ -103,5 +114,39 @@ def editar_materias(id):
     conn.close()
 
     return render_template("editar.html", materia=materia)
-if __name__ == "__main__":                      
+
+# Rota para ver tarefas
+@app.route("/tarefas/<int:materia_id>", methods=["GET", "POST"])
+def tarefas(materia_id):
+
+    conn = conectar_db()
+    cursor = conn.cursor()
+
+    # Adicionar nova tarefa
+    if request.method == "POST":
+        nome_tarefa = request.form.get("nome")
+
+        if nome_tarefa:
+            cursor.execute(
+                "INSERT INTO tarefas (nome, materia_id) VALUES (?, ?)",
+                (nome_tarefa, materia_id)
+            )
+            conn.commit()
+
+            return redirect(url_for("tarefas", materia_id=materia_id))
+            
+ # Buscar tarefas da matéria
+    cursor.execute(
+        "SELECT * FROM tarefas WHERE materia_id = ?",
+        (materia_id,)
+    )    
+        
+    tarefas = cursor.fetchall()
+
+    conn.close()
+
+    return render_template("tarefas.html", tarefas=tarefas)
+
+  
+if __name__ == "__main__":
     app.run(debug=True)
