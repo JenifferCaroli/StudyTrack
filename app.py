@@ -147,6 +147,22 @@ def tarefas(materia_id):
 
     return render_template("tarefas.html", tarefas=tarefas)
 
+# Marcar tarefa como concluída
+@app.route("/concluir/<int:id>")
+def concluir_tarefa(id):
+    conn = conectar_db()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "UPDATE tarefas SET status = 1 WHERE id = ?",
+        (id,)
+    )
+    conn.commit()
+    conn.close()
+
+# Volta a página anterior
+    return redirect(request.referrer)
+
   
 if __name__ == "__main__":
     app.run(debug=True)

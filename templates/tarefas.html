@@ -19,7 +19,14 @@
         <ul>
             {% for tarefa in tarefas %}
             <li>
+                {% if tarefa[2] == 1 %}
+                <s> {{ tarefa[1] }} </s>
+                {% else %}
                 {{ tarefa[1] }}
+                <a href="/concluir/{{ tarefa[0] }}">
+                    <button>Concluir</button>
+                </a>
+                {% endif %}
             </li>
             {% endfor %}
         </ul>
